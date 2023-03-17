@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credisimo</title>
+    <link rel="stylesheet" href="./assets/styles/reset.css">
+    <link rel="stylesheet" href="./assets/styles/registerPage.css">
+    <link rel="stylesheet" href="./assets/styles/loginPage.css">
+    <script src="https://kit.fontawesome.com/3bd7740ca1.js" crossorigin="anonymous"></script>
+    <style>
+        @font-face {
+            font-family: regularSize;
+            src: url(./assets/styles/fonts/ttcommons-regular-webfont.woff2);
+        }
+
+        @font-face {
+            font-family: mediumSize;
+            src: url(./assets/styles/fonts/ttcommons-medium-webfont.woff2);
+        }
+
+        @font-face {
+            font-family: boldSize;
+            src: url(./assets/styles/fonts/ttcommons-demibold-webfont.ttf);
+        }
+    </style>
+<style>
+    header{
+        background-color:#f2f6fe;
+        display: flex;
+        align-items: center;
+   }
+   
+   .menu{
+    display: flex; 
+    justify-content: space-between;
+   }
+   /* #homePage{
+    display: flex;
+    justify-content: space-around;
+    background-image: url("./assets/images/Home_plus--desktop.svg");
+
+   } */
+   #homePage{
+    display: grid;
+    background-color: #f5f7fd;
+    grid-template-columns:   repeat(12, 1fr);;
+    grid-template-rows: repeat(11, 1fr);
+    height: 120vh;
+    width: 100%;
+    grid-template-areas: 
+    ". . . . . . . . . . . ."
+    ". a a a a f f f f f f ."
+    ". b b b b f f f f f f ."
+    ". i i i i f f f f f f ."
+    ". i i i i f f f f f f ."
+    ". i i i i f f f f f f ."
+    ". i i i i f f f f f f ."
+    ". i i i i f f f f f f ."
+    ". i i i i f f f f f f ."
+    ". i i i i f f f f f f ."
+    ". . . . . . . . . . . ."
+    
+   }
+   .callToActionH1{
+    grid-area: a;
+font-size: 3.5rem;
+color: #404653;
+font-family: boldSize;
+   }
+   
+   .callToActionContent{
+    grid-area: b;
+   }
+   .imageForContnent{
+    grid-area: i;
+    background-image: url("./assets/images/Home_plus--desktop.svg");
+    background-size: cover;
+
+   }
+   
+   #moneyForm{
+    grid-area: f;
+    padding: 30px;
+    /* display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center; */
+    background-color: white;
+    border-style: solid;
+    border-width: 0.1mm;
+    border-color: #dbe0ed;
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns:   repeat(12, 1fr);;
+    grid-template-rows: repeat(13, 1fr);
+    height: 80vh;
+    width: 100%;
+    grid-template-areas: 
+    ". . . . . . . . . . . ."
+    ". . m m m m m m m m . ."
+    ". r r . . . . . . n n ."
+    ". l l l l l l l l l l ."
+    ". k k . . . . . . z z ."
+    ". a a . . . . . . b b ."
+    ". c c c c c c c c c c ."
+    ". d d . . . . . . e e ."
+    ". f f . . . . . . g g ."
+    ". h h h h h h h h h h ."
+    ". . . . . . . . . . . ."
+    ". i i i i . . . j j j ."
+    ". . . . . . . . . . . ."
+    ". o o o o o o o o o o ."
+    ". . . . . . . . . . . ."
+
+   }
+   .incomeTitle{
+    grid-area: r;
+
+    
+   }
+           .incomeInputForm{
+            grid-area: n;
+            font-weight: 800;
+
+
+
+           }
+            .sliderIncome{
+                grid-area: l;
+
+
+            }
+            .minSumIncome{
+                grid-area: k;
+                color: #c3ccda;
+
+
+
+            }
+            .maxSumIncome{
+                grid-area: z;
+                color: #c3ccda;
+
+
+            }
+
+   .moneyFormInput{
+    grid-area: m;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+   }
+    .sumInForm{
+    grid-area: a;
+    
+
+   }
+   .valueSumInForm{
+    grid-area: b;
+    font-weight: 800;
+
+
+   }
+
+   .sliderMoney{
+    grid-area: c;
+   } 
+   .minSum{
+    grid-area: d;
+color: #c3ccda;
+   }
+   .maxSum{
+    grid-area: e;
+    color: #c3ccda;
+   }
+ .periodTitle{
+    grid-area: f
+ }
+ .periodMonths{
+
+    grid-area: g;
+    font-weight: 800;
+
+ }
+ .monthsSlider{
+    grid-area: h
+
+ }
+ .monthsSlider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 40px;
+  background: #ee6b44;
+  cursor: pointer;
+}
+ .creditInstallment{
+    grid-area: i
+
+
+ }
+ .creditAmouthValue{
+    grid-area: j
+
+ }
+ #candidateBtn{
+    grid-area:o ;
+    background-color: #fa6428;
+color: white;
+border-style: none;
+    border-radius: 30px;
+    font-family: boldSize;
+    font-size: 1.5rem;
+    height: 60px;
+
+ }
+ 
+/* #moneyForm>input {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 10px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s; */
+  .slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 15px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  -webkit-transition: .2s;
+ 
+}
+
+
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: url('./assets/images/credissimo-logo.svg');
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background:#fa6428;
+  cursor: pointer;
+}
+ 
+</style>
+    
+</head>
+
+<body>
+    <header>
+        <a href="#home">
+            <img src="./assets/images/credissimo-logo (1).svg" alt="">
+        </a>
+        <div class="menu"id="menu">
+            <a href="#loginPage">Влез</a>
+            <a href="#registerPage">Регистрирай</a>
+        </div>
+       
+    </header>
+    <div id="registerPage">
+        <div>
+            <img src="./assets/images/credissimo-logo (1).svg" alt="">
+            <form action="register" id="registerForm">
+                <h5>Регистрирай се</h5>
+                <div class="inputContainer">
+                    <i class="fa-solid fa-user"></i>
+                    <input type="text" name="username" id="username" placeholder="Потребителско име">
+                </div>
+                <div class="inputContainer">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" name="password" id="password" placeholder="Парола">
+                </div>
+                <div class="inputContainer">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" name="rePassword" id="rePassword" placeholder="Повтори паролата си">
+                </div>
+                <a href="#loginPage">Вече си регистриран?</a>
+
+                <input type="submit" name="submitRegister" id="submitRegister" value="Регистрирай се">
+            </form>
+
+        </div>
+    </div>
+    <div id="loginPage">
+        <div>
+            <img src="./assets/images/credissimo-logo (1).svg" alt="">
+            <form action="login" id="loginForm">
+                <h5>Влез в профила си</h5>
+                <div class="inputContainer">
+                    <i class="fa-solid fa-user"></i>
+                    <input type="text" name="username" id="loginUsername" placeholder="Потребителско име">
+                </div>
+                <div class="inputContainer">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" name="password" id="loginPassword" placeholder="Парола">
+                </div>
+                <a href="#registerPage">Нямаш регистрация?</a>
+                
+                <input type="submit" name="submitLogin" id="submitLogin" value="Влез">
+            </form>
+    
+        </div>
+    </div>
+
+
+    <div id="homePage">
+
+         <h1 class="callToActionH1">Credissimo плюс до 6000 лв.</h1>
+         <p class="callToActionContent">Вземи заем Credissimo плюс до 6 000 лв. <strong style="font-weight: 600;">и плати първа вноска след минимум 45 дни!</strong> </p>
+         <div class="imageForContnent"></div>
+
+
+        <form action="register" id="moneyForm">
+
+            <div class="moneyFormInput">
+                <h5 class="headerOfForm"> Кандидатствай сега</h5>
+                <input style="height: 40px; width: 100%; border-style: none; background-color: rgba(255, 222, 173, 0);" type="text" name="username" id="moneyInputName"disabled  placeholder="Потребителско име">
+            </div>
+
+            
+            <h5 class="incomeTitle "> Месечен доход</h5>
+            <p class="incomeInputForm">500 лв.</p>
+            <input type="range" min="500" max="10000" value="1000" class="sliderIncome slider"  id="myRange">
+            <p class="minSumIncome">500лв</p>
+            <p class="maxSumIncome">10 000лв</p>
+          
+            <h5 class="sumInForm"> Сума</h5>
+            <p class="valueSumInForm">1000 лв.</p>
+            <input type="range" min="1" max="10000" value="1000" class="sliderMoney slider" id="myRange">
+            <p class="minSum">200лв</p>
+            <p class="maxSum">6000лв</p>
+          
+              
+            <h5 class="periodTitle">Период</h5>
+            <span class="periodMonths">12 месеца</span>
+            <input type="range" min="1" max="24" value="12" class="monthsSlider slider" >
+            <h5 class="creditInstallment">Вноска по кредит</h5>
+            <h4 class="creditAmouthValue">Вноска по кредит</h5>
+
+
+            <input type="submit" name="submitRegister" id="candidateBtn" value=" Продължи">
+            
+        </form>
+  
+    </div>
+   
+<script src="./viewControler.js"></script>
+</body>
+
+</html>
