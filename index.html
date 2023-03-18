@@ -5,11 +5,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Credisimo</title>
+    <title>Credissimo плюс</title>
+    <link rel="icon" href="./assets/images/favicon.svg">
     <link rel="stylesheet" href="./assets/styles/reset.css">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous"> -->
     <link rel="stylesheet" href="./assets/styles/registerPage.css">
     <link rel="stylesheet" href="./assets/styles/loginPage.css">
+    <link rel="stylesheet" href="./assets/styles/homePage.css">
     <script src="https://kit.fontawesome.com/3bd7740ca1.js" crossorigin="anonymous"></script>
+    <script src="./assets/model/bankManager.js"></script>
+    <script src="./assets/model/userManager.js"></script>
     <style>
         @font-face {
             font-family: regularSize;
@@ -26,244 +31,71 @@
             src: url(./assets/styles/fonts/ttcommons-demibold-webfont.ttf);
         }
     </style>
-<style>
-    header{
-        background-color:#f2f6fe;
-        display: flex;
-        align-items: center;
-   }
-   
-   .menu{
-    display: flex; 
-    justify-content: space-between;
-   }
-   /* #homePage{
-    display: flex;
-    justify-content: space-around;
-    background-image: url("./assets/images/Home_plus--desktop.svg");
+    <style>
+        header {
+            background-color: #f2f6fe;
+            display: flex;
+            align-items: center;
+        }
 
-   } */
-   #homePage{
-    display: grid;
-    background-color: #f5f7fd;
-    grid-template-columns:   repeat(12, 1fr);;
-    grid-template-rows: repeat(11, 1fr);
-    height: 120vh;
-    width: 100%;
-    grid-template-areas: 
-    ". . . . . . . . . . . ."
-    ". a a a a f f f f f f ."
-    ". b b b b f f f f f f ."
-    ". i i i i f f f f f f ."
-    ". i i i i f f f f f f ."
-    ". i i i i f f f f f f ."
-    ". i i i i f f f f f f ."
-    ". i i i i f f f f f f ."
-    ". i i i i f f f f f f ."
-    ". i i i i f f f f f f ."
-    ". . . . . . . . . . . ."
-    
-   }
-   .callToActionH1{
-    grid-area: a;
-font-size: 3.5rem;
-color: #404653;
-font-family: boldSize;
-   }
-   
-   .callToActionContent{
-    grid-area: b;
-   }
-   .imageForContnent{
-    grid-area: i;
-    background-image: url("./assets/images/Home_plus--desktop.svg");
-    background-size: cover;
+        .menu {
+            display: flex;
+            justify-content: space-between;
+        }
 
-   }
-   
-   #moneyForm{
-    grid-area: f;
-    padding: 30px;
-    /* display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center; */
-    background-color: white;
-    border-style: solid;
-    border-width: 0.1mm;
-    border-color: #dbe0ed;
-    border-radius: 10px;
-    display: grid;
-    grid-template-columns:   repeat(12, 1fr);;
-    grid-template-rows: repeat(13, 1fr);
-    height: 80vh;
-    width: 100%;
-    grid-template-areas: 
-    ". . . . . . . . . . . ."
-    ". . m m m m m m m m . ."
-    ". r r . . . . . . n n ."
-    ". l l l l l l l l l l ."
-    ". k k . . . . . . z z ."
-    ". a a . . . . . . b b ."
-    ". c c c c c c c c c c ."
-    ". d d . . . . . . e e ."
-    ". f f . . . . . . g g ."
-    ". h h h h h h h h h h ."
-    ". . . . . . . . . . . ."
-    ". i i i i . . . j j j ."
-    ". . . . . . . . . . . ."
-    ". o o o o o o o o o o ."
-    ". . . . . . . . . . . ."
+        .errorMessage {
+            background-color: #ffd6d6;
+            border: 0.0625rem solid #fb6161;
+            min-height: 3.125rem;
+            margin: 1.5rem 0 2rem;
+            padding: 1rem 1rem 0.8125rem 3rem;
+            border-radius: 0.25rem;
+            font-size: 1.125rem;
+            font-weight: 500;
+            display: none;
+        }
 
-   }
-   .incomeTitle{
-    grid-area: r;
+        .errorMessage>div p {
+            font-family: boldSize;
+        }
+        
+        
+        .applicationsTable,
+        th,
+        td {
+            border: 1px solid #dbe0ed;
+            
+        }
+        .applicationsTable thead{
+            background-color: #c0d9fc;
+        }
+        .applicationsTable{
+            width: 100%;
+            margin-top: 50px;
 
-    
-   }
-           .incomeInputForm{
-            grid-area: n;
-            font-weight: 800;
+        }
+        .applicationsTable  tr{
+            height: 50px;
+           
+        }
+        .applicationsTable th, td{
+    padding: 18px 
 
+        }
+        .applicationsTable th{
+            font-family: boldSize;
 
+        }
+       .applicationsTable  tbody>tr:hover{
+            background-color: #c0d9fc;
+        }
+        #applicationsPage{
+            background-color: #f2f6fe;
+        }
 
-           }
-            .sliderIncome{
-                grid-area: l;
+        
+    </style>
 
-
-            }
-            .minSumIncome{
-                grid-area: k;
-                color: #c3ccda;
-
-
-
-            }
-            .maxSumIncome{
-                grid-area: z;
-                color: #c3ccda;
-
-
-            }
-
-   .moneyFormInput{
-    grid-area: m;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    
-   }
-    .sumInForm{
-    grid-area: a;
-    
-
-   }
-   .valueSumInForm{
-    grid-area: b;
-    font-weight: 800;
-
-
-   }
-
-   .sliderMoney{
-    grid-area: c;
-   } 
-   .minSum{
-    grid-area: d;
-color: #c3ccda;
-   }
-   .maxSum{
-    grid-area: e;
-    color: #c3ccda;
-   }
- .periodTitle{
-    grid-area: f
- }
- .periodMonths{
-
-    grid-area: g;
-    font-weight: 800;
-
- }
- .monthsSlider{
-    grid-area: h
-
- }
- .monthsSlider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 50px;
-  height: 50px;
-  border-radius: 40px;
-  background: #ee6b44;
-  cursor: pointer;
-}
- .creditInstallment{
-    grid-area: i
-
-
- }
- .creditAmouthValue{
-    grid-area: j
-
- }
- #candidateBtn{
-    grid-area:o ;
-    background-color: #fa6428;
-color: white;
-border-style: none;
-    border-radius: 30px;
-    font-family: boldSize;
-    font-size: 1.5rem;
-    height: 60px;
-
- }
- 
-/* #moneyForm>input {
-  -webkit-appearance: none;
-  width: 100%;
-  height: 10px;
-  border-radius: 5px;
-  background: #d3d3d3;
-  outline: none;
-  opacity: 0.7;
-  -webkit-transition: .2s;
-  transition: opacity .2s; */
-  .slider {
-  -webkit-appearance: none;
-  width: 100%;
-  height: 15px;
-  border-radius: 5px;
-  background: #d3d3d3;
-  outline: none;
-  -webkit-transition: .2s;
- 
-}
-
-
-
-.slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: url('./assets/images/credissimo-logo.svg');
-  cursor: pointer;
-}
-
-.slider::-moz-range-thumb {
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  background:#fa6428;
-  cursor: pointer;
-}
- 
-</style>
-    
 </head>
 
 <body>
@@ -271,15 +103,24 @@ border-style: none;
         <a href="#home">
             <img src="./assets/images/credissimo-logo (1).svg" alt="">
         </a>
-        <div class="menu"id="menu">
-            <a href="#loginPage">Влез</a>
+        <div class="menu" id="menu">
+            <a id="loginLink" href="#loginPage">Влез</a>
             <a href="#registerPage">Регистрирай</a>
         </div>
-       
+
     </header>
     <div id="registerPage">
         <div>
             <img src="./assets/images/credissimo-logo (1).svg" alt="">
+            
+            <div class="errorMessage" id="errorMessagRegister">
+                <div style="display: flex;">
+                    <i id="errorRegisterBtn" style="color:#FB6161;font-size: 24px;; margin-right: 10px;" class="fa-solid fa-square-xmark"></i>
+                    <span id="errorContentRegister"></span>
+                </div>
+                
+            </div>
+
             <form action="register" id="registerForm">
                 <h5>Регистрирай се</h5>
                 <div class="inputContainer">
@@ -288,11 +129,11 @@ border-style: none;
                 </div>
                 <div class="inputContainer">
                     <i class="fa-solid fa-lock"></i>
-                    <input type="password" name="password" id="password" placeholder="Парола">
+                    <input type="password" name="pass" id="password" placeholder="Парола">
                 </div>
                 <div class="inputContainer">
                     <i class="fa-solid fa-lock"></i>
-                    <input type="password" name="rePassword" id="rePassword" placeholder="Повтори паролата си">
+                    <input type="password" name="repeatPass" id="rePassword" placeholder="Повтори паролата си">
                 </div>
                 <a href="#loginPage">Вече си регистриран?</a>
 
@@ -304,6 +145,19 @@ border-style: none;
     <div id="loginPage">
         <div>
             <img src="./assets/images/credissimo-logo (1).svg" alt="">
+
+            <div class="errorMessage" id="errorMessage">
+                <div style="display: flex;">
+                    <i id="errorMessageBtn" style="color:#FB6161;font-size: 24px;; margin-right: 10px;" class="fa-solid fa-square-xmark"></i>
+                    <p>Грешно потребителско име или парола.</p>
+                </div>
+                <p>
+                    В случай че не помниш паролата си, може да генерираш нова <a href="">временна парола от тук</a>
+                </p>
+
+
+            </div>
+
             <form action="login" id="loginForm">
                 <h5>Влез в профила си</h5>
                 <div class="inputContainer">
@@ -312,59 +166,98 @@ border-style: none;
                 </div>
                 <div class="inputContainer">
                     <i class="fa-solid fa-lock"></i>
-                    <input type="password" name="password" id="loginPassword" placeholder="Парола">
+                    <input type="password" name="pass" id="loginPassword" placeholder="Парола">
                 </div>
                 <a href="#registerPage">Нямаш регистрация?</a>
-                
+
                 <input type="submit" name="submitLogin" id="submitLogin" value="Влез">
             </form>
-    
+
         </div>
     </div>
-
-
     <div id="homePage">
 
-         <h1 class="callToActionH1">Credissimo плюс до 6000 лв.</h1>
-         <p class="callToActionContent">Вземи заем Credissimo плюс до 6 000 лв. <strong style="font-weight: 600;">и плати първа вноска след минимум 45 дни!</strong> </p>
-         <div class="imageForContnent"></div>
+        <h1 class="callToActionH1">Credissimo плюс до 6000 лв.</h1>
+        <p class="callToActionContent">Вземи заем Credissimo плюс до 6 000 лв. <strong style="font-weight: 600;">и плати
+                първа вноска след минимум 45 дни!</strong> </p>
+        <div class="imageForContnent"></div>
 
 
-        <form action="register" id="moneyForm">
+        <form action="applay" id="moneyForm">
 
             <div class="moneyFormInput">
                 <h5 class="headerOfForm"> Кандидатствай сега</h5>
-                <input style="height: 40px; width: 100%; border-style: none; background-color: rgba(255, 222, 173, 0);" type="text" name="username" id="moneyInputName"disabled  placeholder="Потребителско име">
+                <input style="height: 40px; width: 100%; "
+                    type="text" name="username" id="moneyInputName"  disabled placeholder="Потребителско име">
             </div>
 
-            
+
             <h5 class="incomeTitle "> Месечен доход</h5>
-            <p class="incomeInputForm">500 лв.</p>
-            <input type="range" min="500" max="10000" value="1000" class="sliderIncome slider"  id="myRange">
+            <p id="incomeSum" class="incomeInputForm">1000 лв.</p>
+            <input type="range" min="500" max="10000" value="1000" name="income" class="sliderIncome slider" id="incomeSumRange">
             <p class="minSumIncome">500лв</p>
             <p class="maxSumIncome">10 000лв</p>
-          
+
             <h5 class="sumInForm"> Сума</h5>
-            <p class="valueSumInForm">1000 лв.</p>
-            <input type="range" min="1" max="10000" value="1000" class="sliderMoney slider" id="myRange">
-            <p class="minSum">200лв</p>
+            <p id="valueOfSumUWant" class="valueSumInForm">5000 лв.</p>
+            <input type="range" min="1000" max="150000" value="5000" name="money" class="sliderMoney slider" id="sumRange">
+            <p class="minSum">1000лв</p>
             <p class="maxSum">6000лв</p>
-          
-              
+
+
             <h5 class="periodTitle">Период</h5>
-            <span class="periodMonths">12 месеца</span>
-            <input type="range" min="1" max="24" value="12" class="monthsSlider slider" >
+            <span id="periodMonths" class="periodMonths">12 месеца</span>
+            <input type="range" min="6" max="60" value="12" name="period" id="periodRange" class="monthsSlider slider">
             <h5 class="creditInstallment">Вноска по кредит</h5>
-            <h4 class="creditAmouthValue">Вноска по кредит</h5>
+            <h4 id="creditAmouthValue" class="creditAmouthValue">Лихва 10%</h5>
+            <h4 id="creditAmouthInterest" class="creditAmouthInterest"> 439.58лв</h5>
 
 
-            <input type="submit" name="submitRegister" id="candidateBtn" value=" Продължи">
-            
+
+                <input type="submit" name="submitRegister" id="candidateBtn" value=" Продължи">
+
         </form>
-  
+
     </div>
-   
-<script src="./viewControler.js"></script>
+
+    <div id="applicationsPage">
+
+        <table  class="applicationsTable">
+            <thead>
+              <tr>
+                <th scope="col">id</th>
+                <th scope="col">Искана сума</th>
+                <th scope="col">Искан срок</th>
+                <th scope="col">Статус</th>
+                <th scope="col">Отказ</th>
+              </tr>
+            </thead>
+            
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+                
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td colspan="2">Larry the Bird</td>
+                <td>@twitter</td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+
+    <script src="./viewControler.js"></script>
+
 </body>
 
 </html>

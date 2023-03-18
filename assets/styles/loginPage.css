@@ -89,3 +89,18 @@ i {
     font-size: 18px;
 }
 
+.errorMessage {
+    background-color: #ffd6d6;
+    border: 0.0625rem solid #fb6161;
+    min-height: 3.125rem;
+    margin: 1.5rem 0 2rem;
+    padding: 1rem 1rem 0.8125rem 3rem;
+    border-radius: 0.25rem;
+    font-size: 1.125rem;
+    font-weight: 500;
+    display: none;
+}
+
+.errorMessage>div p {
+    font-family: boldSize;
+}

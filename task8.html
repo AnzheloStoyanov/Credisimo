@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        .pagination {
+            display: inline-block;
+        }
+
+        .pagination a {
+            color: black;
+            float: left;
+            padding: 8px 16px;
+            text-decoration: none;
+            transition: background-color .3s;
+            border: 1px solid #ddd;
+            font-size: 22px;
+        }
+
+        .pagination a.active {
+            background-color: chocolate;
+            color: white;
+            border: 1px solid chocolate;
+        }
+
+        .pagination a:active {
+            background-color: chocolate;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+        }
+
+        /* .pagination a:hover:not(.active) {background-color: #ddd;} */
+    </style>
+</head>
+
+<body>
+    <div id="pagination" class="pagination">
+
+    </div>
+
+    <table id="table">
+
+
+    </table>
+
+    <script>
+        function myFetch(url) {
+            return fetch(url)
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    } else {
+                        return Promise.reject("Something went wrong");
+                    }
+
+                })
+
+        }
+
+
+
+        for (let i = 5; i <= 20; i += 5) {
+            let a = document.createElement("a");
+
+            a.innerText = i;
+            a.addEventListener("click", () => {
+
+
+
+                let table = document.getElementById("table")
+                table.innerHTML = ""
+
+                let tr = document.createElement("tr");
+                let id = document.createElement("th")
+                id.innerText = "ID"
+
+                let image = document.createElement("th");
+                image.innerText = "Image";
+
+                let width = document.createElement("th");
+                width.innerText = "Image width";
+
+                let height = document.createElement("th");
+                height.innerText = "Image height"
+
+                tr.append(id, image, width, height);
+                table.appendChild(tr)
+
+                for (let i = 0; i < a.innerText; i++) {
+                    myFetch("https://api.thecatapi.com/v1/images/search?")
+                        .then(response => {
+
+                            let tr = document.createElement("tr");
+                            let id = document.createElement("td")
+                            id.innerText = response[0].id
+                            let image = document.createElement("img");
+                            image.src = response[0].url;
+                            image.width="70";
+                            image.height="70"
+
+                            let width = document.createElement("td");
+                            width.innerText = response[0].width;
+
+                            let height = document.createElement("td");
+                            height.innerText = response[0].height;
+
+                            tr.append(id, image, width, height);
+                            table.appendChild(tr)
+
+
+                        })
+
+                }
+            })
+
+
+
+            let pagination = document.getElementById("pagination");
+            pagination.appendChild(a)
+
+        }
+  </script>
+</body>
+</html>
