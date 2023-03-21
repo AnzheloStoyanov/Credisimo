@@ -8,11 +8,15 @@
     <title>Credissimo плюс</title>
     <link rel="icon" href="./assets/images/favicon.svg">
     <link rel="stylesheet" href="./assets/styles/reset.css">
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous"> -->
     <link rel="stylesheet" href="./assets/styles/registerPage.css">
     <link rel="stylesheet" href="./assets/styles/loginPage.css">
     <link rel="stylesheet" href="./assets/styles/homePage.css">
+    <link rel="stylesheet" href="./assets/styles/applications.css">
+    <link rel="stylesheet" href="./assets/styles/waitingStatusPopUp.css">
+    <link rel="stylesheet" href="./assets/styles/loansPage.css">
+    <link rel="stylesheet" href="./assets/styles/BOI.css">
     <script src="https://kit.fontawesome.com/3bd7740ca1.js" crossorigin="anonymous"></script>
+    <script src="./assets/model/loanManager.js"></script>
     <script src="./assets/model/bankManager.js"></script>
     <script src="./assets/model/userManager.js"></script>
     <style>
@@ -36,13 +40,20 @@
             background-color: #f2f6fe;
             display: flex;
             align-items: center;
+            justify-content: space-around;
         }
 
         .menu {
             display: flex;
             justify-content: space-between;
         }
-
+        .menu> a{
+margin-right: 20px;
+font-size: 20px;
+text-decoration: none;
+color: #005AC8;
+font-family: boldSize;
+        }
         .errorMessage {
             background-color: #ffd6d6;
             border: 0.0625rem solid #fb6161;
@@ -58,54 +69,116 @@
         .errorMessage>div p {
             font-family: boldSize;
         }
-        
-        
-        .applicationsTable,
-        th,
-        td {
-            border: 1px solid #dbe0ed;
-            
-        }
-        .applicationsTable thead{
-            background-color: #c0d9fc;
-        }
-        .applicationsTable{
+        .someThing{
             width: 100%;
-            margin-top: 50px;
+             height: 150vh;
+             background-color: #00000064;
+             position: absolute;
+             top: 40px;
+             display: flex; justify-content: center;
+             display: none;
+             align-items: center;
+           /* left: 360px; */ 
+}
+.callToActon{
+    width: 500px;
+    height: 500px;
+    background-color: #fb6161;
+   display:flex;
+   flex-direction: column;
+   padding: 10px;
+   
 
+}
+.callToActHeader{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 40px;
+    color: white;
+}
+       
+        .offers{
+            height:100%;
+            width:100%;
+            border:1px solid #ccc;
+            font:16px/26px Georgia, Garamond, 
+            Serif;overflow:auto;
         }
-        .applicationsTable  tr{
-            height: 50px;
-           
-        }
-        .applicationsTable th, td{
-    padding: 18px 
+       /* width */
+       .offers::-webkit-scrollbar {
+  width: 20px;
+}
 
-        }
-        .applicationsTable th{
-            font-family: boldSize;
+/* Track */
+.offers::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
 
-        }
-       .applicationsTable  tbody>tr:hover{
-            background-color: #c0d9fc;
-        }
-        #applicationsPage{
-            background-color: #f2f6fe;
+/* Handle */
+.offers::-webkit-scrollbar-thumb {
+  background:#f2f6fe;
+  border-radius: 10px;
+}
+#logout{
+    background-color: #fa6428;
+    width: 300px;
+    color: white;
+    border-style: none;
+    border-radius: 30px;
+    font-family: boldSize;
+    font-size: 1.5rem;
+    height: 60px;
+    display: flex; margin: 147px;
+}
+#logout:active {
+    background-color: #0059ce;
+}
+#logout:hover {
+    background-color: #0059ce;
+}
+
+.currentlyOwnedMoney {
+            font-family: serif;
+            text-align: center;
+            animation: animate 
+                0.5s linear infinite;
         }
 
-        
+@keyframes animate {
+            0% {
+                opacity: 0;
+            }
+  
+            50% {
+                opacity: 0.7;
+            }
+  
+            100% {
+                opacity: 0;
+            }
+        }
+
     </style>
 
 </head>
 
 <body>
     <header>
-        <a href="#home">
+        <a href="#homePage">
             <img src="./assets/images/credissimo-logo (1).svg" alt="">
         </a>
         <div class="menu" id="menu">
             <a id="loginLink" href="#loginPage">Влез</a>
             <a href="#registerPage">Регистрирай</a>
+            <a href="#homePage">Home</a>
+            <a href="#applicationsPage">Кандидатури</a>
+            <a href="#loansPage">Заеми</a>
+            <a href="#BOI">Ремайндър</a>
+        </div>
+        <div id="currentlyOwnedMoney" style="font-size: 25px;">
+
         </div>
 
     </header>
@@ -143,8 +216,10 @@
         </div>
     </div>
     <div id="loginPage">
+       
         <div>
             <img src="./assets/images/credissimo-logo (1).svg" alt="">
+            <button id="logout">Излез</button>
 
             <div class="errorMessage" id="errorMessage">
                 <div style="display: flex;">
@@ -221,6 +296,126 @@
     </div>
 
     <div id="applicationsPage">
+        <div id="someThing" class="someThing">
+
+            <div id="callToActon" class="callToActon">
+                <div class="callToActHeader">
+                    <div></div>
+                    <h5>Вашите Оферти</h5>
+                    <i id="closePopUpBtn" style="color: white; font-size: 29px; margin-right: 10px;" class="fa-solid fa-square-xmark"></i>
+                    
+                </div>
+                <div class="offers">Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus voluptatum eligendi accusamus eos suscipit ea harum explicabo sed non accusantium, doloremque odit, quia voluptate commodi maxime cum dolorem soluta obcaecati!
+                Maxime vitae suscipit dolorem ullam temporibus facere iure, earum tenetur cumque, unde illum reprehenderit. Non consectetur neque, obcaecati nesciunt, sequi temporibus commodi aliquid inventore numquam architecto, porro ipsum eveniet saepe?
+                Cumque repellat laudantium rerum officiis ab culpa? Minus, amet et dolorem iure, eveniet placeat ratione voluptatem sit aliquid omnis quia sint dignissimos saepe nam officia, harum quis iste illo labore?
+                Beatae autem nam blanditiis ullam, dicta optio sed consectetur ex at excepturi quis, repellat nisi alias! Laboriosam reprehenderit nemo recusandae perspiciatis odio sunt doloribus beatae est commodi tempore, provident nisi.
+                Velit dolorum vero vitae quos autem, adipisci ad? At fuga odit id cupiditate tempora ut eum ratione, eligendi temporibus earum nesciunt eius distinctio doloremque esse error voluptates, et modi! Veniam?
+                Sunt, facilis distinctio ea veniam pariatur eaque consectetur placeat, suscipit quibusdam adipisci vitae magni ex in maiores repudiandae similique reiciendis quis tempora natus praesentium et maxime vel aliquam libero? Beatae.
+                Sint quas eligendi natus odit? Delectus sequi placeat explicabo maiores sed consequuntur laudantium natus tenetur esse et, possimus ducimus tempore aliquam ipsa deleniti. Qui consequatur, sapiente reprehenderit incidunt ab aliquam.
+                Quis labore nostrum est excepturi magni, repudiandae, ipsam quam tempore vitae architecto ex dignissimos facere id perspiciatis iusto nobis distinctio ullam? Sunt aut aliquid voluptatem recusandae voluptas enim ad fugit!
+                Ad officiis, nisi excepturi, dignissimos dolores explicabo natus recusandae nobis modi quasi sint necessitatibus ipsum eaque quo beatae adipisci alias ipsa! Nisi eos earum modi sequi possimus laudantium voluptate sint!
+                Odio excepturi aperiam delectus quae unde, in nostrum sapiente distinctio aut nulla atque necessitatibus assumenda voluptas, aliquid cum tempore impedit omnis quod? Consectetur tempora reprehenderit itaque officia quo, quos dolorem!
+                </div>
+    
+            </div>
+
+            <div id="waitingForSuccess" class="waitingForSuccess">
+                
+                <div class="waitingHeader">
+                    <div></div>
+                    <h5>Заявката ви се обработва</h5>
+                    <i id="closePopUpWaitingBtn" style="color: white; font-size: 29px; margin-right: 10px;" class="fa-solid fa-square-xmark"></i>
+                    
+                </div>
+
+                <div class="container">
+                  <!-- caveman left -->
+                  <div class="caveman">
+                    <div class="leg">
+                      <div class="foot"><div class="fingers"></div></div>      
+                    </div>
+                    <div class="leg">
+                      <div class="foot"><div class="fingers"></div></div>      
+                    </div>
+                    <div class="shape">
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                    </div>
+                    <div class="head">
+                      <div class="eye"><div class="nose"></div></div>
+                      <div class="mouth"></div>
+                    </div>
+                    <div class="arm-right"><div class="club"></div></div>    
+                  </div>
+                  <!-- caveman right -->
+                  <div class="caveman">
+                    <div class="leg">
+                      <div class="foot"><div class="fingers"></div></div>      
+                    </div>
+                    <div class="leg">
+                      <div class="foot"><div class="fingers"></div></div>      
+                    </div>
+                    <div class="shape">
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                    </div>
+                    <div class="head">
+                      <div class="eye"><div class="nose"></div></div>
+                      <div class="mouth"></div>
+                    </div>
+                    <div class="arm-right"><div class="club"></div></div>    
+                  </div>
+                </div>
+                <!-- //////////////// CREDIT //////////////// -->
+                  
+            
+            
+              </div>
+        
+        </div>
+
+        <div id="someThingElse" class="someThingElse">
+
+            <div id="badNews" class="badNews">
+                <div class="badNewsHeader">
+                    <div></div>
+                    <h5>Отказана Оферта!</h5>
+                    <i id="badNewsCloseBtn" style="color: white; font-size: 29px; margin-right: 10px;" class="fa-solid fa-square-xmark"></i>
+                    
+                </div>
+
+                <div class="badNewsOffer">Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus voluptatum eligendi accusamus eos suscipit ea harum explicabo sed non accusantium, doloremque odit, quia voluptate commodi maxime cum dolorem soluta obcaecati!
+                Maxime vitae suscipit dolorem ullam temporibus facere iure, earum tenetur cumque, unde illum reprehenderit. Non consectetur neque, obcaecati nesciunt, sequi temporibus commodi aliquid inventore numquam architecto, porro ipsum eveniet saepe?
+                Cumque repellat laudantium rerum officiis ab culpa? Minus, amet et dolorem iure, eveniet placeat ratione voluptatem sit aliquid omnis quia sint dignissimos saepe nam officia, harum quis iste illo labore?
+                Beatae autem nam blanditiis ullam, dicta optio sed consectetur ex at excepturi quis, repellat nisi alias! Laboriosam reprehenderit nemo recusandae perspiciatis odio sunt doloribus beatae est commodi tempore, provident nisi.
+                Velit dolorum vero vitae quos autem, adipisci ad? At fuga odit id cupiditate tempora ut eum ratione, eligendi temporibus earum nesciunt eius distinctio doloremque esse error voluptates, et modi! Veniam?
+                Sunt, facilis distinctio ea veniam pariatur eaque consectetur placeat, suscipit quibusdam adipisci vitae magni ex in maiores repudiandae similique reiciendis quis tempora natus praesentium et maxime vel aliquam libero? Beatae.
+                Sint quas eligendi natus odit? Delectus sequi placeat explicabo maiores sed consequuntur laudantium natus tenetur esse et, possimus ducimus tempore aliquam ipsa deleniti. Qui consequatur, sapiente reprehenderit incidunt ab aliquam.
+                Quis labore nostrum est excepturi magni, repudiandae, ipsam quam tempore vitae architecto ex dignissimos facere id perspiciatis iusto nobis distinctio ullam? Sunt aut aliquid voluptatem recusandae voluptas enim ad fugit!
+                Ad officiis, nisi excepturi, dignissimos dolores explicabo natus recusandae nobis modi quasi sint necessitatibus ipsum eaque quo beatae adipisci alias ipsa! Nisi eos earum modi sequi possimus laudantium voluptate sint!
+                Odio excepturi aperiam delectus quae unde, in nostrum sapiente distinctio aut nulla atque necessitatibus assumenda voluptas, aliquid cum tempore impedit omnis quod? Consectetur tempora reprehenderit itaque officia quo, quos dolorem!
+                </div>
+
+    
+            </div>
+        </div>
+
+        <div id="acceptedContainer" class="acceptedContainer">
+            <div id="goodNews" class="goodNews">
+
+                <div class="goodNewsHeader">
+                    <div></div>
+                    <h5>Одобрена Оферта!</h5>
+                    <i id="goodNewsCloseBtn" style="color: #323334; font-size: 29px; margin-right: 10px;" class="fa-solid fa-square-xmark"></i>
+                    
+                </div>
+
+                <div id="goodNewsOffer" class="goodNewsOffer"> 
+                </div>
+    
+            </div>
+        </div>
+
 
         <table  class="applicationsTable">
             <thead>
@@ -233,28 +428,113 @@
               </tr>
             </thead>
             
-            <tbody>
-              <tr>
+            <tbody id="offersContainer">
+              <tr class="statusLate">
                 <th scope="row">1</th>
                 <td>Mark</td>
                 <td>Otto</td>
-                <td>@mdo</td>
+                <td class="status">Изчакване</td>
+                <td class="tdBtn"><button class="refusBtn">Отказ</button></td>
                 
               </tr>
-              <tr>
+              <tr class="statsCanceled">
                 <th scope="row">2</th>
                 <td>Jacob</td>
                 <td>Thornton</td>
-                <td>@fat</td>
+                <td class="status">Отказан</td>
+                <td class="tdBtn"><button class="refusBtn">Отказ</button></td>
+
               </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
+              <tr class="statsOkay">
+                <th scope="row">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td class="status">Одобрен</td>
+                <td class="tdBtn"><button class="refusBtn">Отказ</button></td>
+
               </tr>
+              
             </tbody>
           </table>
+          
+          
     </div>
+
+    <div id="loansPage">
+        <table  class="loansTable"> 
+            
+            <thead>
+              <tr>
+                <th scope="col">Лихва</th>
+                <th scope="col">Отпусната сума</th>
+                <th scope="col">Месечна вноска</th>
+                <th scope="col">Време за погасяване</th>
+                <th scope="col">Обща дължима сума</th>
+              </tr>
+            </thead>
+            
+            <tbody id="loansContainer">
+               
+              
+             
+    
+            </tbody>
+          </table>
+
+    </div>
+
+    <div  id="BOI" style="display: none;">
+     
+<div class="container">
+  <!-- caveman left -->
+  <div class="caveman">
+    <div class="leg">
+      <div class="foot"><div class="fingers"></div></div>      
+    </div>
+    <div class="leg">
+      <div class="foot"><div class="fingers"></div></div>      
+    </div>
+    <div class="shape">
+      <div class="circle"></div>
+      <div class="circle"></div>
+    </div>
+    <div class="head">
+      <div class="eye"><div class="nose"></div></div>
+      <div class="mouth"></div>
+    </div>
+    <div class="arm-right"><div class="club"></div></div>    
+  </div>
+  <!-- caveman right -->
+  <div class="caveman">
+    <div class="leg">
+      <div class="foot"><div class="fingers"></div></div>      
+    </div>
+    <div class="leg">
+      <div class="foot"><div class="fingers"></div></div>      
+    </div>
+    <div class="shape">
+      <div class="circle"></div>
+      <div class="circle"></div>
+    </div>
+    <div class="head">
+      <div class="eye"><div class="nose"></div></div>
+      <div class="mouth"></div>
+    </div>
+    <div class="arm-right"><div class="club"></div></div>    
+  </div>
+</div>
+<!-- //////////////// CREDIT //////////////// -->
+
+  <div id="link">
+    <p style="font-size: 25px; color: black;">Бабанките идвет да те бият бягай!</p>
+  </div>
+
+
+          
+
+
+    </div>
+    
 
     <script src="./viewControler.js"></script>
 

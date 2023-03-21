@@ -216,6 +216,12 @@ text-align: center;
     height: 60px;
 
 }
+#candidateBtn:hover{
+    background-color: #f87b49;
+}
+#candidateBtn:active{
+    background-color:#0059ce;
+}
 
 .slider {
     -webkit-appearance: none;

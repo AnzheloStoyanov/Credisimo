@@ -1,0 +1,52 @@
+.loansTable,
+th,
+td {
+    border: 1px solid #5a5c5e;
+
+}
+
+.loansTable thead {
+    background-color: #383a3d;
+}
+
+.loansTable {
+    width: 100%;
+    margin-top: 50px;
+    color: white;
+
+}
+
+.loansTable tr {
+    height: 50px;
+
+}
+
+.loansTable th,
+td {
+    padding: 18px
+}
+
+.loansTable th {
+    font-family: boldSize;
+
+}
+
+.loansTable tbody>tr:hover {
+    background-color: #56595c;
+}
+
+#loansPage {
+    background-color: #f2f6fe;
+    display: flex;
+    flex-direction: column;
+}
+
+.tdBtn {
+    display: flex;
+    justify-content: center;
+}
+.loansStatus {
+    background-color: #383a3d;
+
+}
+

@@ -1,0 +1,358 @@
+.applicationsTable,
+th,
+td {
+    border: 1px solid #dbe0ed;
+
+}
+
+.applicationsTable thead {
+    background-color: #c0d9fc;
+}
+
+.applicationsTable {
+    width: 100%;
+    margin-top: 50px;
+
+}
+
+.applicationsTable tr {
+    height: 50px;
+
+}
+
+.applicationsTable th,
+td {
+    padding: 18px
+}
+
+.applicationsTable th {
+    font-family: boldSize;
+
+}
+
+.applicationsTable tbody>tr:hover {
+    background-color: #c0d9fc;
+}
+
+#applicationsPage {
+    background-color: #f2f6fe;
+    display: flex;
+    flex-direction: column;
+}
+
+.tdBtn {
+    display: flex;
+    justify-content: center;
+}
+
+
+.refusBtn {
+    width: 95px;
+    padding: 10px;
+    grid-area: o;
+    background-color: #fb6161;
+    color: white;
+    border-style: none;
+    border-radius: 30px;
+    font-family: boldSize;
+    font-size: 14px;
+}
+
+.tdBtn button:hover {
+    background-color: red;
+}
+
+.tdBtn button:active {
+    background-color: darkblue;
+}
+
+.statusLate {
+    background-color: #f0f5a7;
+
+}
+
+.statsCanceled {
+    background-color: #ffd6d6;
+}
+
+.statsOkay {
+    background-color: #c8fabe;
+}
+
+.status {
+    cursor: pointer
+}
+
+.lookBtn {
+    width: 95px;
+    padding: 10px;
+    grid-area: o;
+    background-color: rgb(17, 209, 17);
+    color: white;
+    border-style: none;
+    border-radius: 30px;
+    font-family: boldSize;
+    font-size: 14px;
+}
+
+.lookRefBtn {
+    width: 95px;
+    padding: 10px;
+    grid-area: o;
+    background-color: red;
+    color: white;
+    border-style: none;
+    border-radius: 30px;
+    font-family: boldSize;
+    font-size: 14px;
+}
+
+.someThingElse {
+    width: 100%;
+    height: 150vh;
+    background-color: #00000064;
+    position: absolute;
+    top: 40px;
+    display: flex;
+    justify-content: center;
+    display: none;
+    align-items: center;
+    /* left: 360px; */
+}
+
+.badNews {
+    width: 500px;
+    height: 500px;
+    background-color: #fb6161;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+
+
+}
+
+.badNewsHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 40px;
+    color: white;
+}
+
+.badNewsOffer{
+    height:100%;
+    width:100%;
+    border:1px solid #ccc;
+    font:16px/26px Georgia, Garamond, 
+    Serif;overflow:auto;
+}
+/* width */
+.badNewsOffer::-webkit-scrollbar {
+width: 20px;
+}
+
+/* Track */
+.badNewsOffer::-webkit-scrollbar-track {
+box-shadow: inset 0 0 5px grey;
+border-radius: 10px;
+}
+
+/* Handle */
+.badNewsOffer::-webkit-scrollbar-thumb {
+background:#f2f6fe;
+border-radius: 10px;
+}
+
+
+
+.acceptedContainer {
+    width: 100%;
+    height: 150vh;
+    background-color: #00000064;
+    position: absolute;
+    top: 40px;
+    justify-content: center;
+    align-items: center;
+    display: none;
+    /* left: 360px; */
+}
+.goodNews {
+    width: 500px;
+    height: 500px;
+    background-color: #f2f6fe;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+.goodNewsHeader{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 40px;
+    color: rgb(78, 204, 91);
+    /* color: rgb(58, 57, 57); */
+
+}
+
+.goodNewsOffer::-webkit-scrollbar {
+    width: 20px;
+    }
+    
+    /* Track */
+    .goodNewsOffer::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px rgb(78, 204, 91);;
+    border-radius: 10px;
+    }
+    
+    /* Handle */
+    .goodNewsOffer::-webkit-scrollbar-thumb {
+    background:#2fb709;
+    border-radius: 10px;
+    }
+
+.goodNewsOffer{
+    height:100%;
+    width:100%;
+    border:1px solid #ccc;
+    font:16px/26px Georgia, Garamond, 
+    Serif;overflow:auto;
+
+    display: grid;
+    grid-template-columns: repeat(1,1fr);
+    grid-template-rows: repeat(3,1fr);
+    grid-template-areas:
+    "oferOne"
+    "oferTwo"
+    "oferThree"
+}
+.goodNews>div>div{
+    font-family: mediumSize;
+    font-size: 1.3rem;
+}
+
+
+/* <div class="oferOne"> 
+
+<div>interestRate</div> <h5>6%</h5> <div>loanTerm</div> <h5>12</h5>
+<div>loanAmount:</div> <h5>5000</h5> <div>monthlyPayment</div> <h5>430.33</h5>
+
+</div> */
+
+
+
+.oferOne {
+    grid-area: oferOne;
+    border-style: solid;
+    border-width: 1px 0;
+    border-color: #c0d9fc;
+    display: grid;
+    height: 350px;
+    padding: 50px;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows: repeat(3,1fr);
+    grid-template-areas:
+        "i p l h"
+        "d e f o"
+        ". re de .";
+}
+
+
+
+.acceptBtn {
+    grid-area: re;
+    width: 95px;
+    height: 42px;
+    padding: 10px;
+    background-color: rgb(17, 209, 17);
+    color: white;
+    border-style: none;
+    border-radius: 30px;
+    font-family: boldSize;
+    font-size: 14px;
+
+}
+.rejectItBtn{
+    grid-area: de;
+    width: 95px;
+    height: 42px;
+    padding: 10px;
+    background-color:red;
+    color: white;
+    border-style: none;
+    border-radius: 30px;
+    font-family: boldSize;
+    font-size: 14px;
+
+
+
+}
+
+.loanAmount{
+    grid-area: d;
+
+}
+.loanAmountValue{
+    grid-area: e;
+    font-weight: 700;
+    color: #005ac8;
+}
+.monthlyPayment{
+    grid-area: f;
+}
+.monthlyPaymentVelue{
+    grid-area: o;
+    font-weight: 700;
+    color: #005ac8;
+}
+     
+.interestRate{
+    grid-area: i;
+}
+.interestRateProcent{
+    grid-area: p;
+    font-weight: 700;
+    color: #005ac8;
+
+}
+.loanTerm{
+    grid-area: l;
+}
+.months{
+    grid-area: h;
+    font-weight: 700;
+    color: #005ac8;
+}
+
+
+.oferTwo {
+    grid-area: oferTwo;
+    display: grid;
+    border-style: solid;
+    border-width: 1px 0;
+    border-color: #c0d9fc;
+    display: grid;
+    height: 350px;
+    padding: 50px;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows: repeat(3,1fr);
+    grid-template-areas:
+        "i p l h"
+        "d e f o"
+        ". re de .";
+}
+.oferThree {
+    grid-area: oferThree;
+    border-style: solid;
+    border-width: 1px 0;
+    border-color: #c0d9fc;
+    display: grid;
+    height: 350px;
+    padding: 50px;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows: repeat(3,1fr);
+    grid-template-areas:
+        "i p l h"
+        "d e f o"
+        ". re de .";
+}
+
